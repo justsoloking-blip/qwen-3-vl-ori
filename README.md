@@ -1,10 +1,10 @@
 # Qwen3-VL-32B 学生原始工程
 
-从 Qwen3-VL-32B-Instruct 在 SGLang 上的原始部署开始，逐步完成分布式推理问题排查、Profiler 分析和性能优化。本仓库仅提供起步源码、部署工具、请求与采样脚本，以及四次课的实验任务。
+从 Qwen3-VL-32B-Instruct 在 SGLang 上的原始部署开始，逐步完成分布式推理问题排查、Profiler 分析和性能优化。本仓库提供起步源码、部署工具、请求与采样脚本，以及四次课的实验任务；课后参考源码单独放在 `references/`，不接入原始部署。
 
 **原始含义：未应用本项目的兼容性修复、手写融合算子或新增优化配置。** SGLang 官方版本内置的 CUDA Graph、通信实现和局部编译机制保持原样。开启新的并行配置时，学生可能遇到原工程的问题，这正是第二次课要自行定位的内容。
 
-仓库从全新 Git 历史开始，学习任务中不附补丁、答案、优化结果或完成版 PPT。
+仓库从全新 Git 历史开始，四次课的任务文件不附补丁、答案、优化结果或完成版 PPT。完全不含参考实现的初始工程保留在 [b1397eb](https://github.com/justsoloking-blip/qwen-3-vl-ori/tree/b1397eb683d06b421f284961cad21b11ef6c01c5)。
 
 ## 1. 起点与环境
 
@@ -89,6 +89,7 @@ scripts/                 下载、准备 runtime、原始文件校验
 benchmarks/              固定输出请求、Profiler 采集和 trace 统计
 tests/                   中性 API smoke
 exercises/               四次课任务，无答案
+references/              课后中文注释源码，不被部署脚本导入
 runtime/                 本机生成的完整 SGLang overlay、日志与密钥（忽略）
 ```
 
@@ -103,3 +104,13 @@ runtime/                 本机生成的完整 SGLang overlay、日志与密钥�
 原工程的环境快照被保留；本次未在全新 GPU 机器重新下载并安装整套依赖或执行模型。学生应按第一课记录实际安装与 GPU 请求结果，不能将本地工具检查写成 GPU 复现通过。
 
 运行时只做路径、端口、overlay 和密钥的便携适配，具体列表见 `baseline/provenance.json`；原始源码文件本身不被准备脚本修改。
+
+## 7. 课后源码对照
+
+完成对应练习后，可阅读 [QK RMSNorm + MRoPE Triton 中文注释源码](references/fused_qk_mrope_annotated.py)。它与优化项目中的原始实验候选具有完全相同的可执行逻辑，仅增加中文注释；未进入最终默认方案，也未修复已知的 `positions` stride 寻址缺陷。该文件独立保存，不修改 `baseline/`，不被服务或准备脚本导入。
+
+希望从完全没有参考实现的工程开始，可在克隆后执行：
+
+```bash
+git switch -c my-learning b1397eb683d06b421f284961cad21b11ef6c01c5
+```
