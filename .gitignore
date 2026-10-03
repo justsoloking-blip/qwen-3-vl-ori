@@ -1,0 +1,13 @@
+.venv/
+runtime/
+models/
+results/
+submissions/**/traces/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+*.key
+*.pem
+*.safetensors
+*.json.gz

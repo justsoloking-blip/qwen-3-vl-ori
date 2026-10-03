@@ -1,0 +1,24 @@
+{
+  "snapshot_origin": "Historical deployment environment; not a fresh GPU validation of this student package",
+  "os": "Linux x86_64",
+  "python": "3.12",
+  "original_active_gpus": "GPU 0, 1 x NVIDIA H200",
+  "recommended_course_hardware": "2 x NVIDIA H200 with NVLink for distributed exercises",
+  "sglang": "0.5.6.post2",
+  "torch": "2.9.1+cu128",
+  "transformers": "4.57.1",
+  "flashinfer_python": "0.5.3",
+  "flashinfer_cubin": "0.5.3",
+  "sgl_kernel": "0.3.19",
+  "triton": "3.5.1",
+  "nvidia_cudnn_cu12": "9.16.0.29",
+  "weight_dtype": "bfloat16",
+  "tp_size": 1,
+  "gpus": "0",
+  "context_length": 32768,
+  "mem_fraction_static": 0.85,
+  "max_running_requests": 8,
+  "cuda_graph_max_bs": 8,
+  "installation_boundary": "Full pip-freeze is preserved with --no-deps including a historical cuDNN override. Fresh-machine install, pip check and GPU execution must be recorded by the student; this package does not claim they were revalidated."
+}
+

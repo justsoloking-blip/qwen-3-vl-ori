@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-10-03",
+  "upstream": {
+    "repository": "https://github.com/sgl-project/sglang",
+    "tag": "v0.5.6.post2",
+    "python_package": "sglang==0.5.6.post2"
+  },
+  "model": {
+    "repository": "Qwen/Qwen3-VL-32B-Instruct",
+    "revision": "0cfaf48183f594c314753d30a4c4974bc75f3ccb"
+  },
+  "scope": "Original deployment configuration and unmodified upstream source. No project model fixes or added optimization configuration. Upstream built-in defaults remain.",
+  "config_sanitization": "Local model path replaced by MODEL_PATH. Hash below is the sanitized distributed file.",
+  "runtime_packaging_adaptations": [
+    "Substitute user-provided local model path, GPUs and port into the original config.",
+    "Create venv symlink and copy installed sglang==0.5.6.post2 package into a private runtime overlay; then copy baseline/src over it.",
+    "Prepend runtime overlay to sys.path and PYTHONPATH.",
+    "Use config base_url in service status check instead of a literal port 30000.",
+    "Create private logs/results/cache directories and a random API key (0600)."
+  ],
+  "files": [
+    {
+      "path": "config.json",
+      "sha256": "bb984c9be01cd7de2bf1f74081131e05d235d24c5537dec9bc68492bd2552f7e"
+    },
+    {
+      "path": "service.py",
+      "sha256": "f3498ef3ada44f7ddd91413ccf47cbc8e308eecffbd22816d2dcca388c051a93"
+    },
+    {
+      "path": "src/sglang/srt/model_executor/forward_batch_info.py",
+      "sha256": "a03fdc0a9296ec6a0d590e79127b9ca114106bb259b16f44b5e8de42a1266bae",
+      "upstream_url": "https://raw.githubusercontent.com/sgl-project/sglang/v0.5.6.post2/python/sglang/srt/model_executor/forward_batch_info.py"
+    },
+    {
+      "path": "src/sglang/srt/models/qwen3_vl.py",
+      "sha256": "a651bdef3e2f3ef7b99831a0f2a96c4bdc28c0263b6c9823d1a19addace0008d",
+      "upstream_url": "https://raw.githubusercontent.com/sgl-project/sglang/v0.5.6.post2/python/sglang/srt/models/qwen3_vl.py"
+    }
+  ]
+}
